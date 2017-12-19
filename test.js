@@ -4,7 +4,7 @@ const User = require('./server/user.js')
 
 
 console.log('Making database')
-const db = new DB('test')
+const db = new DB('test.db')
 console.dir(db)
 
 console.log('Initializing database')
