@@ -1,34 +1,11 @@
 
-const DB = require('./server/db.js')
-const User = require('./server/user.js')
+const Expense = require('./server/expense.js')
 
+let test = new Expense(new Date(2017, 0, 1), 1000.0, null, new Date(2018, 0, 1))
 
-console.log('Making database')
-const db = new DB('test.db')
-console.dir(db)
+test = test.pay(new Expense.Payment(200, new Date(2017, 5, 1)))
 
-console.log('Initializing database')
-User.init(db, () => {
-    console.log('Creating User')
-    const user = new User('moo', 'squeak', 'diaz@squeakmail.com', 'brando', '1990s', '1 555 555 5555')
-    console.dir(user)
-    
-    console.log('Adding user to database')
-    User.create(db, user, () => {
+console.log(test.getPayForPeriod(new Date()))
+console.log(test.getPayForPeriod(new Date(2017, 1, 2)))
 
-        const print_data = (user) => {
-            if (user) {
-                console.log(user)
-            } else {
-                console.log('user not found')
-            }
-        }
-
-        console.log('Testing user login.')
-        User.login(db, user.username, 'SQUONK', print_data)
-        User.login(db, user.username, 'squeak', print_data)
-    })
-})
-
-
-
+console.log(test.paid())
