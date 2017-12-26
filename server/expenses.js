@@ -60,6 +60,16 @@ class Expenses {
     add(e) {
         return new Expenses(this.children.concat(e))
     }
+
+    static default_expense_tree() {
+        let out = new Expenses()
+        let housing = new Category('Housing')
+        let utilities = new Category('Utilities')
+
+        housing.add(utilities)
+        utilities.add(new Expense('Electricity'))
+        utilities.add(new Expense('Water'))
+    }
 }
 
 module.exports = Expenses

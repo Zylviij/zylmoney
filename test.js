@@ -1,7 +1,12 @@
 
 const Expense = require('./server/expense.js')
 
-let test = new Expense(new Date(2017, 0, 1), 1000.0, null, new Date(2018, 0, 1))
+let test = new Expense(
+    new Date(2017, 0, 1),
+    1000.0,
+    null,
+    new Date(2018, 0, 1)
+)
 
 test = test.pay(new Expense.Payment(200, new Date(2017, 5, 1)))
 
